@@ -1,0 +1,3 @@
+%.out: %.hpp 
+	g++ -std=c++11 $*.hpp -o $*.out
+#	clang++ -Wall -pedantic -std=c++11 $*.cpp -o $*.out

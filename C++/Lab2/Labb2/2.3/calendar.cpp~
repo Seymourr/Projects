@@ -1,0 +1,37 @@
+#include "calendar.h"
+	using namespace std;
+template<typename T> {
+
+	Calendar::Calendar() {
+	 	currentTime = T();
+	}
+	
+	Calendar& Calendar::operator=(Calendar<T> & otherCal) {
+		cal = otherCal.cal;
+		currentTime = otherCal.currentTime;
+	}
+	
+	bool Calendar::set_date(int year, int month, int day) {
+		bool valid = true;
+		
+		return valid;
+	}
+	
+	bool Calendar::add_event(string text, int year, int month, int day) {
+		bool valid = true;
+		return true;
+	}
+	
+	
+	
+	bool Calendar::remove_event(string text, int year, int month, int day) {
+		return true;
+	
+	}
+
+
+		ostream & operator<<(ostream & os, const T someDate){
+
+		}
+
+}

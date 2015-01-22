@@ -1,0 +1,143 @@
+//TODO abstrakt basklass Date, year() month() (måndag = 1), week_day_name(), month_name() (retur std::string), add_year(int n = 1) add_month(int n = 1). ska kunna hantera olika typer av kalendrar
+#include "Date.h"
+
+//#include<string>
+
+//En struktur, vi bygger sedan en lista av strukturer ? => en kalender... kan sedan lägga in strings med info typ: fotbollsträning...
+struct enhet {
+	int ar =0; //Year of the calendar
+	int manad = 0; //Month of the calendar
+	int dag = 0; //Current day in the calendar
+};
+class middle::Date {
+	protected:
+		const int daysPerWeek = 7; 
+		const int monthsPerYear = 12;
+		const std::vector<std::string> weeknames = {"monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"};
+		
+		const std::vector<std::string> monthnames = {"january", "february", "march", "april", "may", "june", "july", "august", "october", "november", "december"};
+
+		middle* vek;
+		
+	
+	public:
+		
+		/**
+		* Constructor that create a Calendar starting in a specific year, month 
+		* and day. 
+		* TODO : Init of vek (?)
+		*/
+		middle(int year, int month, int day) {
+			enhet NewEnhet; 
+			NewEnhet.ar = year;
+			NewEnhet.manad = month;
+			NewEnhet.dag = day;
+			vek = NewEnhet;
+			
+			
+		}
+		int year() {
+			return vek->ar;
+		};
+		int month() {
+			return vek->manad;
+		};
+		int day(){
+			return vek->dag;
+		};
+		std::string week_day_name() {
+			int daysSinceJulianDay = mod_julian_day(year(), month(), day());
+		std::string weekdayname = weeknames[daysSinceJulianDay % 7];
+		return weekdayname;
+		}
+
+		std::string month_name() {
+		return monthnames[month() -1];
+		}
+		
+		int week_day(){
+		return (mod_julian_day(year(), month(), day()) % 7) + 1;
+		}
+
+		int days_this_month() = 0;
+		int days_per_week(){
+			return daysPerWeek;
+		}
+		int months_per_year(){
+			return monthsPerYear;
+		}
+
+		virtual Date& add_year(int n = 1) = 0;
+		virtual Date& add_month(int n = 1) = 0;
+
+		virtual Date& operator ++() = 0;
+		virtual Date& operator --() = 0;
+		virtual Date& operator +=(int rhs) = 0;
+		virtual Date& operator -=(int rhs) = 0;
+		virtual int operator-(const Date &otherDate) = 0;
+
+		
+		
+
+		bool & operator== (const Date &otherDate) const {
+		// är datumen samma?
+			if (year() == otherDate.year() && month() == otherDate.month() && day() == otherDate.day()){
+				return true;
+			} else{
+				return false;
+
+			}	
+		
+		}
+		//Date objekt?
+		bool & operator!= (const Date &otherDate) const {
+		// är datumen olika?
+		return !(this == otherDate);
+		}
+		
+		//Date objekt?
+		bool & operator< (const Date &otherDate) const {
+			// är datumet mindre än rvaluet
+			
+			if (year() < otherDate.year()){
+				return true;
+			} else if((year() == otherDate.year()) && (month() < otherDate.month())){
+				return true;
+
+			} else if(((year() == otherDate.year()) && ((month() == otherDate.month())) && (day() < otherDate.day()){
+				return true
+
+			} else {
+			
+				return false;		
+			}
+			
+		}
+		
+			//Date objekt?
+		bool & operator<= (const Date &otherDate) const {
+			// är datumet mindre eller lika med rvaluet
+			return (!(this > otherDate));
+
+		}
+			//Date objekt?
+		bool & operator>= (const Date &otherDate) const {
+			// är datumet större lika med rvalue?
+			return (!(this < otherDate));
+		}
+		
+			//Date objekt?
+		bool & operator> (const Date &otherDate) const {
+			// är lvalue större än rvalue?
+			return (this > otherDate);
+		}
+
+		
+};
+
+std::ostream & operator<<(std::ostream & os, const Date & someDate) {
+		os << someDate.year() << "-" << someDate.month() << "-" << someDate.day() << "\n";
+		return os;
+		}
+// två kalendrar gregorian och Julian, men vilken som helst ska kunna implementeras
+

@@ -1,0 +1,18 @@
+1: Har en fel implementation av matrix subtraktion
+(Off by one error)
+
+2: Det första elementet i sista raden får 1 adderat till sig
+
+3: Copy assignment ger den andra matrisen multiplicerat med två.
+
+4: Matrisen nollställs efter att man skriver ut den
+
+5: Vid tilldelning så ändras inte rad/kolonn antalet, utan t.ex. en 3x3 matris som blir tilldelad 2x2 ändrar bara i två första elementen i två första raderna. Vid skapande av tom matris skapas identitetsmatrisen (?).
+
+6: Transponering är felaktigt implementerad. Första elementet i varje rad blir alltid 0.
+
+7: Implementation av matrix addition fel. Funkar inte för tomma(rader/kolonner > 0, men värden på 0)/små matriser, och räknar fel i större (3x3).
+
+8: Går inte att addera till 0 i matrix addition.
+
+9: Lägger till 1 vid tilldelning lite varsom (sista raden, första elementet?). Substraktions delen tyder på något annorlunda? Hursom, antagligen tilldelning som är knasigt implementerad.
